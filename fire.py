@@ -67,7 +67,7 @@ def main():
             frames.append(rgb_array.copy())
         elif len(frames) == max_frames:
             print("Salvando GIF real...")
-            imageio.mimsave('fogo_doom_real.gif', frames, fps=FPS)
+            imageio.mimsave('fogo_doom_real.gif', frames, fps=FPS, loop=0)
             print("Concluído! O arquivo deve ter poucos KB.")
             frames.append(None) # Para não salvar de novo
 
