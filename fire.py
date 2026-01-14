@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 import sys
+import imageio
 
 # Configuracoes
 LARGURA_FOGO = 100
@@ -47,6 +48,9 @@ def main():
     fogo_grid = np.zeros((ALTURA_FOGO, LARGURA_FOGO), dtype=np.int32)
     fogo_grid[-1, :] = 36 
 
+    frames = []
+    max_frames = 90  # Captura 3 segundos a 30 FPS
+
     rodando = True
     while rodando:
         for event in pygame.event.get():
@@ -58,6 +62,15 @@ def main():
         fogo_grid = atualizar_fogo_deschamps(fogo_grid)
 
         rgb_array = PALETA[fogo_grid]
+
+        if len(frames) < max_frames:
+            frames.append(rgb_array.copy())
+        elif len(frames) == max_frames:
+            print("Salvando GIF real...")
+            imageio.mimsave('fogo_doom_real.gif', frames, fps=FPS)
+            print("Concluído! O arquivo deve ter poucos KB.")
+            frames.append(None) # Para não salvar de novo
+
         surface_array = np.swapaxes(rgb_array, 0, 1)
         surf = pygame.surfarray.make_surface(surface_array)
         

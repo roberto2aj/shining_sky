@@ -1,7 +1,7 @@
 # Doom Fire (Pygame)
 
 <p align="center">
-  <img src="demo.gif" alt="Doom fire demo" width="700">
+  <img src="fogo_doom_real.gif" alt="Doom fire demo" width="700">
 </p>
 
 Este repositorio e um estudo do efeito de fogo estilo Doom usando uma tabela de cores (paleta) e uma simulacao discreta de calor. A implementacao foi feita como exercicio de aprendizagem: primeiro entendendo a "fisica" simplificada do fogo, depois adicionando dissipacao e, por fim, o vento.
