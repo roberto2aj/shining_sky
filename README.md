@@ -120,7 +120,7 @@ O vento e apenas um deslocamento horizontal do grid. Isso puxa as chamas para um
 
 ---
 
-## 📚 Deep Dive Técnico: Vetorização com NumPy
+## Deep Dive Técnico: Vetorização com NumPy
 
 Após a publicação inicial deste projeto, recebi uma pergunta técnica do engenheiro [@victorvalentee](https://github.com/victorvalentee) durante uma discussão sobre otimização:
 
@@ -141,7 +141,7 @@ Criei uma implementação vetorizada (`vectorizedvolumetricfire.py`) que:
 
 Para detalhes sobre a implementação, conceitos de broadcasting avançado, benchmarks e discussão sobre limitações teóricas, veja:
 
-**📖 [TECHNICAL_DEEP_DIVE.md](TECHNICAL_DEEP_DIVE.md)**
+** [TECHNICAL_DEEP_DIVE.md](TECHNICAL_DEEP_DIVE.md)**
 
 Este documento inclui:
 - Análise matemática da vetorização (Big-O)
