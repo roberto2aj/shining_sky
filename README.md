@@ -28,6 +28,8 @@ python fire.py
 | Arquivo | Funcao |
 | --- | --- |
 | `fire.py` | Implementa o grid de calor, paleta e renderizacao |
+| `vectorizedvolumetricfire.py` | Versão vetorizada usando broadcasting NumPy avançado |
+| `TECHNICAL_DEEP_DIVE.md` | Análise técnica detalhada sobre vetorização e otimização |
 
 ## Como funciona: A Lógica Matricial
 
@@ -115,3 +117,36 @@ O vento e apenas um deslocamento horizontal do grid. Isso puxa as chamas para um
 
 - A paleta define o "estilo" do fogo; trocar a paleta muda a aparencia inteira.
 - O tamanho do grid define o detalhe. O tamanho da janela apenas escala o resultado.
+
+---
+
+## 📚 Deep Dive Técnico: Vetorização com NumPy
+
+Após a publicação inicial deste projeto, recebi uma pergunta técnica do engenheiro [@victorvalentee](https://github.com/victorvalentee) durante uma discussão sobre otimização:
+
+> **"Como simular os 3 segundos de fogo sem usar loops?"**
+
+Essa pergunta me levou a um estudo aprofundado sobre **broadcasting multidimensional**, **álgebra vetorial** e **trade-offs entre paralelização espacial vs. temporal** em algoritmos com dependência causal.
+
+### Resultado do Estudo
+
+Criei uma implementação vetorizada (`vectorizedvolumetricfire.py`) que:
+
+- **Elimina loops espaciais** (100×100 pixels) usando operações vetoriais NumPy
+- **Reduz complexidade** de O(T×H×W) loops Python para O(T) iterações com operações vetorizadas em C
+- **Ganho de performance**: ~100× mais rápido na geração dos frames
+- **Limitação identificada**: O loop temporal permanece devido à natureza de recorrência da propagação de calor
+
+### Documentação Técnica Completa
+
+Para detalhes sobre a implementação, conceitos de broadcasting avançado, benchmarks e discussão sobre limitações teóricas, veja:
+
+**📖 [TECHNICAL_DEEP_DIVE.md](TECHNICAL_DEEP_DIVE.md)**
+
+Este documento inclui:
+- Análise matemática da vetorização (Big-O)
+- Comparação entre abordagens (loops vs. broadcasting)
+- Conceitos avançados de NumPy demonstrados
+- Trade-offs arquiteturais (memória vs. computação)
+- Discussão sobre paralelização em GPU
+- Por que o loop temporal é inevitável (dependência causal)
