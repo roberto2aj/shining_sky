@@ -179,6 +179,16 @@ A distinção essencial está entre:
 
 ---
 
+## Evolução: Decay Matrix Abstraction
+
+Após a publicação deste estudo, o [@victorvalentee](https://github.com/victorvalentee) propôs e implementou uma abordagem ainda mais radical no [PR #1](https://github.com/elen-c-sales/fogo_doom/pull/1): trocar equivalência física por equivalência perceptual.
+
+Em vez de simular a propagação passo-a-passo, a nova implementação ([decay_abstraction/DECAY_MATRIX_PROPOSAL.md](decay_abstraction/DECAY_MATRIX_PROPOSAL.md), de autoria do [@victorvalentee](https://github.com/victorvalentee)) pré-calcula "biografias" de partículas usando distribuições estatísticas, alcançando speedup de 2.5x sem loops temporais.
+
+Isso representa um avanço na fronteira entre simulação rigorosa e síntese eficiente, demonstrando que trade-offs perceptuais podem superar limitações algébricas.
+
+---
+
 ## Agradecimentos
 
 Agradeço ao [@victorvalentee](https://github.com/victorvalentee) pela pergunta provocativa que inspirou este estudo aprofundado. Questões técnicas como essa são fundamentais para o crescimento como desenvolvedor.

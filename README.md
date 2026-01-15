@@ -158,3 +158,19 @@ Este documento inclui:
 - Trade-offs arquiteturais (memória vs. computação)
 - Discussão sobre paralelização em GPU
 - Por que o loop temporal é inevitável (dependência causal)
+
+### Nova Abordagem: Decay Matrix Abstraction
+
+Alavancado pela proposta e implementação no [PR #1](https://github.com/elen-c-sales/fogo_doom/pull/1) do engenheiro [@victorvalentee](https://github.com/victorvalentee), implementamos uma abstração avançada que troca equivalência física por equivalência perceptual, alcançando speedup de 2.5x.
+
+Para detalhes sobre a proposta original, fundamentação teórica e implementação com particle streams (documentos de autoria do [@victorvalentee](https://github.com/victorvalentee)), veja:
+
+** [decay_abstraction/DECAY_MATRIX_PROPOSAL.md](decay_abstraction/DECAY_MATRIX_PROPOSAL.md)**
+
+Para executar a comparação de performance e gerar GIF lado-a-lado, use:
+
+```bash
+uv run decay_abstraction/compare_approaches.py
+```
+
+** [decay_abstraction/WHY_USE_UV.md](decay_abstraction/WHY_USE_UV.md)** explica o uso do `uv` para gerenciamento de dependências.
