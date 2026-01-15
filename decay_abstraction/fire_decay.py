@@ -180,15 +180,12 @@ def gerar_fogo_matriz_decaimento():
     num_streams = TOTAL_FRAMES + ALTURA
     
     # 2. Gerar as histórias de vida (Streams)
-    print("1. Gerando streams de partículas...")
     streams = create_particle_streams(num_streams, ALTURA, LARGURA)
     
     # 3. Mapear para o Espaço-Tempo
-    print("2. Mapeando para o cubo 3D (Tempo, Altura, Largura)...")
     fire_cube = sample_space_time(streams, TOTAL_FRAMES, ALTURA, LARGURA)
     
     # 4. Aplicar Vento
-    print("3. Aplicando vento...")
     final_cube = apply_wind_effect(fire_cube)
     
     # IMPORTANTE:

@@ -1,8 +1,14 @@
 import numpy as np
 import time
 import imageio
+import os
+import sys
+
+# Add parent directory to path to allow importing 'fire' module
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from fire import atualizar_fogo_deschamps
-from decay_abstraction import gerar_fogo_matriz_decaimento
+from decay_abstraction.fire_decay import gerar_fogo_matriz_decaimento
 
 # Configurações
 LARGURA, ALTURA = 100, 100
@@ -34,15 +40,13 @@ def gerar_fogo_original_loop():
     return np.array(frames), end_time - start_time
 
 def main():
-    print("=== Comparativo de Performance ===")
+    print("\n\n======== Comparativo de Performance ========")
     
     # 1. Original
-    print("\nExecutando Algoritmo Original (Deschamps)...")
     frames_orig, tempo_orig = gerar_fogo_original_loop()
-    print(f"Tempo Original: {tempo_orig*1000:.2f}ms")
+    print(f"Tempo Algoritmo Original: {tempo_orig*1000:.2f}ms")
     
     # 2. Decay Matrix
-    print("\nExecutando Novo Algoritmo (Decay Matrix)...")
     start_time = time.time()
     frames_new = gerar_fogo_matriz_decaimento()
     end_time = time.time()
@@ -68,10 +72,10 @@ def main():
         # Colorir
         rgb = PALETA[combined]
         combined_frames.append(rgb)
-        
-    imageio.mimsave('comparison.gif', combined_frames, fps=FPS, loop=0)
-    print("Salvo: comparison.gif")
-    print("Esquerda: Original | Direita: Decay Matrix")
+    
+    output_path = os.path.join(os.path.dirname(__file__), 'comparison.gif')
+    imageio.mimsave(output_path, combined_frames, fps=FPS, loop=0)
+    print(f"Salvo: {output_path}")
 
 if __name__ == "__main__":
     main()
