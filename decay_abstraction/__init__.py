@@ -1,1 +1,0 @@
-from .fire_decay import gerar_fogo_matriz_decaimento
